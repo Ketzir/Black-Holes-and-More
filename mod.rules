@@ -1,0 +1,17 @@
+ID = "mekaxdlolhd.blackholes"
+Name = "Black holes and more"
+Author = "Scribble"
+Logo = "StarsectorBlackHoleIcon.png"
+
+ModifiesGameplay = true
+Version = "0.0.1"
+CompatibleGameVersions = ["0.30.0"]
+Description = "This mod supposedly adds black holes, period..."
+
+Actions = [
+    {
+         Action = AddMany
+         AddTo = "<doodads/doodads.rules>/Doodads"
+         ManyToAdd = [ &<doodads/black_hole.rules> ]
+    }
+]
