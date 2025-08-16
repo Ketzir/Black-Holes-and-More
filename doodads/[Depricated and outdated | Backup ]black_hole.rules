@@ -1,0 +1,76 @@
+ID = cosmoteer.blackhole
+Type = Planet
+DescriptionKey = "Doodads/BlackHole"
+CategoryKey = "Doodads/Planets"
+Icon = { Texture = "StarsectorBlackHoleIcon.png" } 
+
+StyleID = blackhole
+TextureSize = [512, 512]
+ScaleRange = [1500, 4000]  // Larger than planets
+DefaultScale = 2500
+RenderStage = Upper
+IsLightSource = false
+ShowInMinimap = true
+MinimapColorScale = [0, 0, 0, 255]  // Pure black
+Tags = [blackhole, hazard]
+
+// --- VISUALS ---
+Components
+{
+    BlackCore = {
+        Type = Graphics
+        Location = [0.5, 0.5]
+        Floor = {
+            Layer = "doodads_high"
+            Shape = Circle
+            Size = [1, 1]
+            Color = [0, 0, 0, 255]  // Pure black
+            BorderColor = [80, 0, 160, 255]  // Purple rim
+            BorderThickness = 0.1
+        }
+    }
+
+    AccretionRing = {
+        Type = Graphics
+        Location = [0.5, 0.5]
+        OperationalDoodad = {
+            Layer = "doodads_high"
+            Shape = Ring
+            InnerRadius = 0.7
+            OuterRadius = 1.3
+            Color = [128, 0, 255, 120]  // Purple haze
+            RotationSpeed = -0.3  // Slow spin
+            SegmentCount = 64
+        }
+    }
+}
+
+// --- GAMEPLAY ---
+ProximityEffects
+{
+    InstantKillRadiusFactor = 0.3  // Small death zone
+    EffectsRadiusFactor = 3.0  // Larger warning zone
+    EffectsScaleOverDistance = [100%, 5%]
+    
+    // Damage ships that get too close (reusing heat as a placeholder)
+    HitOperationalEffects = [
+        {
+            Type = StatusApplication
+            StatusType = cosmoteer.heat
+            StatusValue = { BaseValue=500; }  // Overheats systems
+        }
+    ]
+    HitStructuralEffects = [
+        {
+            Type = Damage
+            Damage = { BaseValue=200; }  // Hull stress
+        }
+    ]
+
+    // Reuse the sun's warning circle (safe fallback)
+    WarningCircle = {
+        Thickness = 10
+        Color = [160, 0, 255, 127]  // Purple warning
+        Texture = { File = "./Data/modes/pvp/perimeter.png" }  // Vanilla asset
+    }
+}
