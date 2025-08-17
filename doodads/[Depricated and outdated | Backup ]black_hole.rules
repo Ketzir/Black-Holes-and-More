@@ -74,3 +74,32 @@ ProximityEffects
         Texture = { File = "./Data/modes/pvp/perimeter.png" }  // Vanilla asset
     }
 }
+
+
+// --- DEATH ZONE ---
+ProximityEffects = {  
+    // ---- MASSIVE SWIRL ZONE ----  
+    EffectsRadiusFactor = 8.0   
+    WarningCircle = {  
+    Texture = {  
+        File = "./Data/modes/pvp/perimeter.png",  
+        UMode = "Wrap",  
+        SampleMode = "Linear",  
+        MipLevels = "max"  // Smoother texture  
+    },  
+    Color = [0, 100, 255, 180],  // Deep blue  
+    Thickness = 40,  // Wider swirl  
+    QuadCount = 128,  // Ultra-smooth  
+    UVRect = [0, 1, 0.25, -1],  
+    Shader = "./Data/modes/pvp/perimeter.shader",  
+    TargetBlendMode = {  
+        SourceRgbFactor = "SourceAlpha",  
+        DestRgbFactor = "One",  
+        RgbOperator = "Add"  
+    },  
+    RotationSpeed = -0.6  // ← Rotates clockwise (negative = faster)  
+},  
+WarningCircleThicknessZoomExponent = 0.3  // Less zoom sensitivity 
+}
+
+PRESERVATION AT ALL COST
